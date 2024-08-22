@@ -1,0 +1,662 @@
+Rat food program:-
+import java.util.*;
+class Main
+{
+    public static int min(int k, int h, int[] arr)
+    {
+        if (arr == null)
+        {
+            return -1;
+        }
+        int total = k * h;
+        int totalFood = 0;
+        for (int i = 0; i < arr.length; i++)
+        {
+            totalFood += arr[i];
+            if (totalFood >= total) {
+                return i + 1;
+            }
+        }
+        return 0;
+    }
+    public static void main(String[] args)
+    {
+        Scanner KH=new Scanner(System.in);
+        int r = KH.nextInt();
+        int unit = KH.nextInt();
+        int house=KH.nextInt();
+        int[] arr = new int[house];
+        for(int i=0;i<house;i++)
+        {
+            arr[i]=KH.nextInt();
+        }
+        int result = min(r, unit, arr);
+        System.out.println(result);
+    }
+}
+
+replace the given char in string:-
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner KH = new Scanner(System.in);
+        String k = KH.nextLine();
+        char[] h = k.toCharArray();
+        char i = KH.next().charAt(0);
+        char j = KH.next().charAt(0);
+        for (int l = 0; l < h.length; l++) {
+            if (h[l] == i) {
+                h[l] = j;
+            } else if (h[l] == j) {
+                h[l] = i;
+            }
+        }
+        System.out.println(new String(h));
+    }
+}
+
+print number with having equal digits upto end:-
+import  java.util.*;
+class Main
+{
+    public static void main(String[]args)
+    {
+        Scanner KH=new Scanner(System.in);
+        int k=KH.nextInt();
+        int h=KH.nextInt();
+        for(int i=k;i<=h;i++)
+        {
+            System.out.printf("%03d\t",i);
+        }
+    }
+}
+
+keyword or not:-
+import java.util.ArrayList;
+import java.util.*;
+class Main
+{
+    public static void main(String[] args) 
+    {
+        Scanner KH = new Scanner(System.in);
+        ArrayList<String> k = new ArrayList<>();
+        while (true) 
+        {
+            String h = KH.nextLine();
+            if (h.equals("null")) 
+            {
+                break;
+            }
+            k.add(h);
+        }
+        String hk = KH.nextLine();
+        boolean found = false;
+        for (int i = 0; i < k.size(); i++) 
+        {
+            if (k.get(i).equals(hk)) 
+            {
+                System.out.print(hk + " is a keyword");
+                found = true;
+                break;
+            }
+        }
+        if (!found) 
+        {
+            System.out.print(hk + " is not a keyword");
+        }
+    }
+
+
+product of array elements:-
+import java.util.*;
+class ProductArray {
+    public static int[] getProductArray(int[] arr) {
+        int n = arr.length;
+        int[] leftProducts = new int[n];
+        int[] rightProducts = new int[n];
+        int[] output = new int[n];
+        leftProducts[0] = 1;
+        for (int i = 1; i < n; i++) {
+            leftProducts[i] = arr[i - 1] * leftProducts[i - 1];
+        }
+        rightProducts[n - 1] = 1;
+        for (int i = n - 2; i >= 0; i--) {
+            rightProducts[i] = arr[i + 1] * rightProducts[i + 1];
+        }
+        for (int i = 0; i < n; i++) {
+            output[i] = leftProducts[i] * rightProducts[i];
+        }
+        return output;
+    }
+    public static void main(String[] args) {
+        Scanner KH=new Scanner (System.in);
+        int k=KH.nextInt();
+        int []arr=new int[k];
+        for(int i=0;i<k;i++)
+        {
+            arr[i]=KH.nextInt();
+        }
+        int[] productArray = getProductArray(arr);
+
+        // Print the output array
+        for (int value : productArray) {
+            System.out.print(value + " ");
+        }
+    }
+}
+
+
+Calculator program:-
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+public class Main extends Frame
+{
+    Main()
+    {
+        Frame f = new Frame("Calculator");
+        f.setSize(400, 400);
+        Label l = new Label("CALCULATOR");
+        l.setBounds(150, 50, 100, 30);
+        Label l1 = new Label("First number");
+        l1.setBounds(50, 100, 100, 30);
+        TextField k = new TextField();
+        k.setBounds(200, 100, 100, 30);
+        Label l2 = new Label("Second number");
+        l2.setBounds(50, 150, 100, 30);
+        TextField t = new TextField();
+        t.setBounds(200, 150, 100, 30);
+        Button add = new Button("+");
+        add.setBounds(50, 200, 50, 30);
+        Button sub = new Button("-");
+        sub.setBounds(110, 200, 50, 30);
+        Button mul = new Button("*");
+        mul.setBounds(170, 200, 50, 30);
+        Button div = new Button("/");
+        div.setBounds(230, 200, 50, 30);
+        Label result = new Label("Result: ");
+        result.setBounds(50, 250, 250, 30);
+        ActionListener s= new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                String a=k.getText();
+                String b=t.getText();
+                int i=Integer.parseInt(a.trim());
+                int j=Integer.parseInt(b.trim());
+                int c=0;
+                if(e.getSource()==add)
+                {
+                    c=i+j;
+                }
+                if(e.getSource()==sub)
+                {
+                    c=i-j;
+                }
+                if(e.getSource()==mul)
+                {
+                    c=i*j;
+                }
+                if(e.getSource()==div)
+                {
+                    c=i/j;
+                }
+                result.setText("Result: " + c);
+            }
+        };
+        add.addActionListener(s);
+        sub.addActionListener(s);
+        mul.addActionListener(s);
+        div.addActionListener(s);
+        f.add(l);
+        f.add(l1);
+        f.add(l2);
+        f.add(t);
+        f.add(k);
+        f.add(add);
+        f.add(sub);
+        f.add(mul);
+        f.add(div);
+        f.add(result);
+        f.setLayout(null);
+        f.setVisible(true);
+        f.setSize(350,350);
+
+    }
+    public static void main(String[]args)
+    {
+        new Main();
+    }
+}
+
+Adding 2 months 15 days and minus 5 hours from today:-
+import java.time.*;
+class Main 
+{
+    public static void main(String[] args) {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        LocalDateTime newDateTime = currentDateTime.plusMonths(2).plusDays(15);
+        newDateTime = newDateTime.minusHours(5);
+        System.out.println("Current Date and Time: " + currentDateTime);
+        System.out.println("Modified Date and Time: " + newDateTime);
+    }
+}
+
+Calculator program:-
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+public class Main extends Frame
+{
+    Main()
+    {
+        Frame f = new Frame("Calculator");
+        f.setSize(400, 400);
+        Label l = new Label("CALCULATOR");
+        l.setBounds(150, 50, 100, 30);
+        Label l1 = new Label("First number");
+        l1.setBounds(50, 100, 100, 30);
+        TextField k = new TextField();
+        k.setBounds(200, 100, 100, 30);
+        Label l2 = new Label("Second number");
+        l2.setBounds(50, 150, 100, 30);
+        TextField t = new TextField();
+        t.setBounds(200, 150, 100, 30);
+        Button add = new Button("+");
+        add.setBounds(50, 200, 50, 30);
+        Button sub = new Button("-");
+        sub.setBounds(110, 200, 50, 30);
+        Button mul = new Button("*");
+        mul.setBounds(170, 200, 50, 30);
+        Button div = new Button("/");
+        div.setBounds(230, 200, 50, 30);
+        Label result = new Label("Result: ");
+        result.setBounds(50, 250, 250, 30);
+        ActionListener s= new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                String a=k.getText();
+                String b=t.getText();
+                int i=Integer.parseInt(a.trim());
+                int j=Integer.parseInt(b.trim());
+                int c=0;
+                if(e.getSource()==add)
+                {
+                    c=i+j;
+                }
+                if(e.getSource()==sub)
+                {
+                    c=i-j;
+                }
+                if(e.getSource()==mul)
+                {
+                    c=i*j;
+                }
+                if(e.getSource()==div)
+                {
+                    c=i/j;
+                }
+                result.setText("Result: " + c);
+            }
+        };
+        add.addActionListener(s);
+        sub.addActionListener(s);
+        mul.addActionListener(s);
+        div.addActionListener(s);
+        f.add(l);
+        f.add(l1);
+        f.add(l2);
+        f.add(t);
+        f.add(k);
+        f.add(add);
+        f.add(sub);
+        f.add(mul);
+        f.add(div);
+        f.add(result);
+        f.setLayout(null);
+        f.setVisible(true);
+        f.setSize(350,350);
+
+    }
+    public static void main(String[]args)
+    {
+        new Main();
+    }
+}
+
+Basic AWL program:-
+import javax.swing.*;
+import javax.swing.plaf.metal.MetalBorders;
+import java.awt.*;
+public class Main extends Frame
+{
+    Main()
+    {
+        Frame f= new Frame("Registration");
+        Button b1=new Button("Login");
+        b1.setBounds(700,300,170,50);
+        TextArea k=new TextArea("Email");
+        k.setBounds(20,30,580,46);
+        TextArea t1=new TextArea("Enter the description");
+        t1.setBounds(700,200,30,30);
+        TextField t2 = new TextField("Enter the text feild: ");
+        t2.setBounds(700,200,30,30);
+        Choice c1=new Choice();
+        Choice c2=new Choice();
+        c1.add("Male");
+        c1.add("Female");
+        c2.add("Erode");
+        c2.add("Bangalore");
+        c2.add("Chennai");
+        f.add(c2);
+        f.add(t1);
+        f.add(k);
+        f.add(c1);
+        f.add(b1);
+        f.setLayout(new GroupLayout(100));
+        f.setVisible(true);
+        f.setSize(100,100);
+    }
+    public static void main(String[]args)
+    {
+        new Main();
+    }
+}
+
+BFS program:-
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+class BFSGraph
+{
+    int numberOfVertices;
+    int[][] adjacencyMatrix;
+    boolean[] visited;
+    public BFSGraph(int vertices) {
+        this.numberOfVertices = vertices;
+        adjacencyMatrix = new int[vertices][vertices];
+        visited = new boolean[vertices];
+    }
+    public void addEdge(int start, int end) {
+        adjacencyMatrix[start][end] = 1;
+        adjacencyMatrix[end][start] = 1;
+    }
+    public void bfs(int startVertex) {
+        Queue<Integer> queue = new LinkedList<>();
+        visited[startVertex] = true;
+        queue.add(startVertex);
+        System.out.println("BFS traversal starting from vertex " + startVertex + ":");
+        while (!queue.isEmpty()) {
+            int vertex = queue.poll();
+            System.out.print(vertex + " ");
+            for (int i = 0; i < numberOfVertices; i++) {
+                if (adjacencyMatrix[vertex][i] == 1 && !visited[i]) {
+                    queue.add(i);
+                    visited[i] = true;
+                }
+            }
+        }
+        System.out.println();
+    }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of vertices: ");
+        int vertices = scanner.nextInt();
+        BFSGraph graph = new BFSGraph(vertices);
+        System.out.print("Enter the number of edges: ");
+        int edges = scanner.nextInt();
+        System.out.println("Enter the edges (start and end vertices):");
+        for (int i = 0; i < edges; i++) {
+            int start = scanner.nextInt();
+            int end = scanner.nextInt();
+            graph.addEdge(start, end);
+        }
+        System.out.print("Enter the starting vertex for BFS: ");
+        int startVertex = scanner.nextInt();
+        graph.bfs(startVertex);
+        scanner.close();
+    }
+}
+
+
+convert into timestamp:-
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+class Main{
+    public static void main(String[] args)
+    {
+        LocalDateTime now = LocalDateTime.now();
+        Instant instant = now.toInstant(ZoneOffset.UTC);
+        long Timestamp = instant.getEpochSecond();
+        System.out.println("Current Unix Timestamp: " + Timestamp);
+    }
+}
+
+date in French language:-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+class Main
+{
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2004, 4, 13);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.FRENCH);
+        String formattedDate = date.format(formatter);
+        System.out.println("Localized Date in French: " + formattedDate);
+    }
+}
+
+find the value and print the index:-
+import java.util.*;
+class Main
+{
+    public static void main(String[]args)
+    {
+        Scanner KH = new Scanner(System.in);
+        ArrayList<Integer> k=new ArrayList<>();
+        int key=KH.nextInt();
+        int i;
+        while(true)
+        {
+            int h=KH.nextInt();
+            if(h<0)
+            {
+                break;
+            }
+            k.add(h);
+        }
+        for(i=0;i<k.size();i++)
+        {
+            if (k.get(i).equals(key))
+            {
+                break;
+            }
+        }
+        System.out.print(i);
+    }
+}
+
+format printer in date and time:-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+class Main {
+    public static void main(String[] args) {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter format1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter format2 = DateTimeFormatter.ofPattern("MMMM dd, yyyy");
+        DateTimeFormatter format3 = DateTimeFormatter.ofPattern("yyyy-MM-dd' Time:- 'HH:mm");
+        String formattedDate1 = now.format(format1);
+        String formattedDate2 = now.format(format2);
+        String formattedDate3 = now.format(format3);
+        System.out.println("Format 'DD/MM/YYYY': " + formattedDate1);
+        System.out.println("Format 'Month DD, YYYY': " + formattedDate2);
+        System.out.println("Format 'YYYY-MM-DDTHH:MM': " + formattedDate3);
+    }
+}
+
+leap year or not:-
+import java.util.*;
+import java.time.*;
+class Main
+{
+    public static boolean isLeapYear(int year)
+    {
+        return Year.of(year).isLeap();
+    }
+    public static void main(String[] args) 
+    {
+        Scanner KH=new Scanner(System.in);
+        int year = KH.nextInt();
+        if (isLeapYear(year)) {
+            System.out.println(year + " is a leap year.");
+        } else {
+            System.out.println(year + " is not a leap year.");
+        }
+    }
+}
+
+time elapsed:-
+import java.time.*;
+class main{
+    public static void main(String[] args)
+    {
+        LocalDate startDate = LocalDate.of(2004, 4, 9);
+        LocalDate currentDate = LocalDate.now();
+        Period period = Period.between(startDate, currentDate);
+        System.out.print(period.getYears() + " years, " + period.getMonths() + " months, " + period.getDays() + " days.");
+    }
+}
+
+ merge the two linked list and sort it:-
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner KH = new Scanner(System.in);
+        LinkedList<Integer> list1 = new LinkedList<>();
+        while (true) {
+            int k = KH.nextInt();
+            if (k < 0) {
+                break;
+            }
+            list1.add(k);
+        }
+        LinkedList<Integer> list2 = new LinkedList<>();
+        while (true) {
+            int k = KH.nextInt();
+            if (k < 0) {
+                break;
+            }
+            list2.add(k);
+        }
+        LinkedList<Integer> mergedList = new LinkedList<>(list1);
+        mergedList.addAll(list2);
+        Collections.sort(mergedList);
+        System.out.println(mergedList);
+    }
+}
+
+print even after odd:-
+import java.util.*;
+class Main
+{
+    public static void main(String[]args)
+    {
+        Scanner KH=new Scanner (System.in);
+        ArrayList<Integer> k=new ArrayList<>();
+        int a=KH.nextInt();
+        int b=KH.nextInt();
+        for(int i=a;i<=b;i++)
+        {
+            k.add(i);
+        }
+        for(int i=0;i<k.size();i++)
+        {
+            int h=k.get(i);
+            if(h%2!=0)
+            {
+                System.out.print(h+" ");
+            }
+        }
+        for(int i=0;i<k.size();i++)
+        {
+            int h=k.get(i);
+            if(h%2==0)
+            {
+                System.out.print(h+" ");
+            }
+        }
+    }
+}
+
+product of array elements:-
+import java.util.*;
+class ProductArray {
+    public static int[] getProductArray(int[] arr) {
+        int n = arr.length;
+        int[] leftProducts = new int[n];
+        int[] rightProducts = new int[n];
+        int[] output = new int[n];
+        leftProducts[0] = 1;
+        for (int i = 1; i < n; i++) {
+            leftProducts[i] = arr[i - 1] * leftProducts[i - 1];
+        }
+        rightProducts[n - 1] = 1;
+        for (int i = n - 2; i >= 0; i--) {
+            rightProducts[i] = arr[i + 1] * rightProducts[i + 1];
+        }
+        for (int i = 0; i < n; i++) {
+            output[i] = leftProducts[i] * rightProducts[i];
+        }
+        return output;
+    }
+    public static void main(String[] args) {
+        Scanner KH=new Scanner (System.in);
+        int k=KH.nextInt();
+        int []arr=new int[k];
+        for(int i=0;i<k;i++)
+        {
+            arr[i]=KH.nextInt();
+        }
+        int[] productArray = getProductArray(arr);
+
+        // Print the output array
+        for (int value : productArray) {
+            System.out.print(value + " ");
+        }
+    }
+}
+
+
+Remove duplicate in arraylist:-
+import java.util.*;
+class Main
+{
+    public static void main(String[]args)
+    {
+        Scanner KH = new Scanner(System.in);
+        ArrayList<Integer> k=new ArrayList<>();
+        while(true)
+        {
+            int h=KH.nextInt();
+            if(h<0)
+            {
+                break;
+            }
+            k.add(h);
+        }
+        for(int i=0;i<k.size();i++)
+        {
+            for(int j=i+1;j<k.size();j++)
+            {
+                if (k.get(i).equals(k.get(j)))
+                {
+                    k.remove(j);
+                    j--;
+                }
+            }
+        }
+        System.out.print(k);
+    }
+}
